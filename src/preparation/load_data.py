@@ -1,3 +1,4 @@
+import collections
 from pathlib import Path
 
 import joblib
@@ -15,8 +16,6 @@ SPLIT_RAW_DATASET_FILEPATH = ROOT_FOLDERPATH / 'data' / 'processed' / 'split-raw
 # Magic values
 RANDOMNESS_SEED = 834
 DATASET_TEST_SPLIT_RATIO = 0.2
-
-import collections
 
 Dataset = collections.namedtuple('Dataset', 'train test')
 DatasetVariables = collections.namedtuple('DatasetVariables', 'x y')

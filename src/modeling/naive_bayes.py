@@ -1,17 +1,21 @@
-from pprint import pprint
+import sys
+from pathlib import Path
 
+import joblib
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from sklearn.metrics import classification_report
 from sklearn.model_selection import GridSearchCV
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 
+ROOT_FOLDERPATH = Path.cwd().parent.parent
+sys.path.append(str(ROOT_FOLDERPATH))
 from src.preparation.load_data import load_dataset
 
+MODEL_FILEPATH = ROOT_FOLDERPATH / 'model' / 'naive-bayes.joblib'
 
-def preprocess_and_train():
+
+def train():
     dataset = load_dataset()
-
     pipeline = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2))),
                          ('tfidf', TfidfTransformer()),
                          ('clf', MultinomialNB())])
@@ -29,17 +33,17 @@ def preprocess_and_train():
         'n_jobs': -1,
     }
     gs = GridSearchCV(**gs_options)
-    gs_result = gs.fit(dataset.train.x, dataset.train.y)
-
-    print(repr(gs))
-    print(classification_report(dataset.test.y, gs.predict(dataset.test.x), digits=3))
-
-    test_accuracy = gs.score(dataset.test.x, dataset.test.y)
-    print('Best Accuracy : '
-          '{:.4f}\n{}\nTest Accuracy : {:.4f}\n\n'.format(gs_result.best_score_,
-                                                          gs_result.best_params_,
-                                                          test_accuracy))
+    gs.fit(dataset.train.x, dataset.train.y)
+    return gs
 
 
-if __name__ == '__main__':
-    pprint(preprocess_and_train())
+def get_model():
+    if MODEL_FILEPATH.exists():
+        with MODEL_FILEPATH.open('rb') as file:
+            classifier = joblib.load(file)
+            return classifier
+
+    classifier = train()
+    with MODEL_FILEPATH.open('wb') as file:
+        joblib.dump(classifier, file)
+    return classifier
