@@ -4,3 +4,4 @@ sklearn
 mglearn
 matplotlib
 dill
+seaborn
