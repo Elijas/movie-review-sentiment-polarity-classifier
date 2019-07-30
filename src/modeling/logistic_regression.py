@@ -2,8 +2,8 @@ import sys
 from pathlib import Path
 
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import GridSearchCV
-from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 
 from src.evaluation.evaluate_classifier_performance import evaluate_classifier_performance
@@ -13,23 +13,23 @@ ROOT_FOLDERPATH = Path.cwd().parent.parent
 sys.path.append(str(ROOT_FOLDERPATH))
 from src.preparation.load_data import load_dataset
 
-MODEL_FILEPATH = ROOT_FOLDERPATH / 'model' / 'naive-bayes.joblib'
+MODEL_FILEPATH = ROOT_FOLDERPATH / 'model' / 'logistic_regression.joblib'
 
 
 def train(dataset=None):
     dataset = dataset or load_dataset()
     pipeline = Pipeline([('vect', CountVectorizer(ngram_range=(1, 3))),
                          ('tfidf', TfidfTransformer()),
-                         ('clf', MultinomialNB())])
+                         ('clf', LogisticRegression())])
     param_grid = {
-        'tfidf__use_idf': [False],
-        'tfidf__norm': ['l1'],
-        'clf__alpha': [1e-1],
+        'vect__ngram_range': [(1, 3)],
+        'tfidf__use_idf': [True, False],
+        'tfidf__norm': ['l1', 'l2'],
     }
     gs_options = {
         'estimator': pipeline,
         'param_grid': param_grid,
-        'cv': 2,
+        'cv': 3,
         'scoring': 'accuracy',
         'verbose': 5,
         'n_jobs': -1,

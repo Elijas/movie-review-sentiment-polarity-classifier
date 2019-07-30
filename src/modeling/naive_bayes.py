@@ -22,14 +22,15 @@ def train(dataset=None):
                          ('tfidf', TfidfTransformer()),
                          ('clf', MultinomialNB())])
     param_grid = {
-        'tfidf__use_idf': [False],
-        'tfidf__norm': ['l1'],
-        'clf__alpha': [1e-1],
+        'vect__ngram_range': [(1, 3)],
+        'tfidf__use_idf': [True, False],
+        'tfidf__norm': ['l1', 'l2'],
+        'clf__alpha': [1e-3, 1e-2, 1e-1, 1],
     }
     gs_options = {
         'estimator': pipeline,
         'param_grid': param_grid,
-        'cv': 2,
+        'cv': 3,
         'scoring': 'accuracy',
         'verbose': 5,
         'n_jobs': -1,
