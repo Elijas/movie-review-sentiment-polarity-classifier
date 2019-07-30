@@ -1,2 +1,6 @@
 jupyter
 nltk
+sklearn
+mglearn
+matplotlib
+dill
