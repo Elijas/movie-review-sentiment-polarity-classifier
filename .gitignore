@@ -1,5 +1,5 @@
 .idea
-model/poc-*
+model/poc*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
