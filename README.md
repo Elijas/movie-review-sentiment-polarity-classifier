@@ -5,7 +5,7 @@ Movie reviews are classified into positive and negative by training two differen
 #### 1. Describe text processing pipeline you have selected.
 TODO
 #### 2. Why you have selected these two classification methods?
-In the standard workflow of implementing ML, it is accepted to abide by the [KISS principle](https://en.wikipedia.org/wiki/KISS_principle), especially at the start. This means training the simpler models (e.g. the Naive Bayes or the Logistic Regression) first. The reason for this is to avoid premature optimization, since the knowledge to make measured decisions is not available yet. For example, the corpus has only ~10k sentence samples and introducing a complex algorithm right away is likely to result in a predictive model with a [high variance](https://en.wikipedia.org/wiki/Bias–variance_tradeoff). Therefore, Naive Bayes and Logistic Regression algorithms are suitable choices here.
+In the standard workflow of implementing ML, it is accepted to abide by the [KISS principle](https://en.wikipedia.org/wiki/KISS_principle), especially at the start. This means training the simpler models (e.g. the Naive Bayes or a Linear model such as the Logistic Regression) first. The reason for this is to avoid premature optimization, since the knowledge to make measured decisions is not available yet. For example, the corpus has only ~10k sentence samples and introducing a complex algorithm right away is likely to result in a predictive model with a [high variance](https://en.wikipedia.org/wiki/Bias–variance_tradeoff). Therefore, Naive Bayes and Logistic Regression algorithms are suitable choices here.
 
 #### 3. Compare selected classification methods. Which one is better? Why?
 TODO
