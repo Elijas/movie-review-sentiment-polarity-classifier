@@ -29,7 +29,7 @@ _SHARED_PIPELINE_ELEMENTS = [
 
 def _get_shared_param_grid_opts(dry_run: bool):
     return {
-        'vect__min_df': [2, 5, 10] if not dry_run else [1, 2],
+        'vect__min_df': [None, 2, 5] if not dry_run else [1, 2],
         'vect__analyzer': [
             'word',
             alpha__analyzer_fun,
@@ -58,11 +58,13 @@ def naive_bayes_gs_opts(dry_run: bool = False):
 def logistic_regression_gs_opts(dry_run: bool = False):
     return {
         'estimator': Pipeline(_SHARED_PIPELINE_ELEMENTS + [
-            ('lr', LogisticRegression(solver='liblinear'))
+            ('lr', LogisticRegression(
+                solver='liblinear',
+                dual=False
+            ))
         ]),
         'param_grid': {
-            'lr__C': [0.2, 0.4, 0.6, 0.8, 1],
-            'lr__dual': [False],
+            'lr__C': [1e-2, 3e-2, 0.2, 0.4, 0.6, 0.8, 1, 3, 10, 30],
             'lr__penalty': ['l1', 'l2'],
             **_get_shared_param_grid_opts(dry_run)
         },

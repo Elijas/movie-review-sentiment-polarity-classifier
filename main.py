@@ -27,11 +27,11 @@ def show_and_save_results(classifier_name: str, classifier, dataset: Dataset) ->
 def run_training_session(dry_run: bool = False):
     data = get_data(dry_run)
 
-    naive_bayes_classifier = train_classifier(naive_bayes_gs_opts(dry_run), data)
-    show_and_save_results('naive-bayes', naive_bayes_classifier, data)
-
     logistic_regression_classifier = train_classifier(logistic_regression_gs_opts(dry_run), data)
     show_and_save_results('logistic-regression', logistic_regression_classifier, data)
+
+    naive_bayes_classifier = train_classifier(naive_bayes_gs_opts(dry_run), data)
+    show_and_save_results('naive-bayes', naive_bayes_classifier, data)
 
 
 if __name__ == '__main__':
