@@ -16,9 +16,8 @@ If the frequency of label samples in the dataset were imbalaced, then I would ha
 ### Training instructions
 Run the following commands in shell:
 1. `pip install -r requirements.txt` to install the dependencies.
-2. `mkdir model`
-3. (Optional) `python main.py --dry-run` to test the configuration
-4. `python main.py` to train the model and see the evaluation results
+2. `python main.py --dry-run` to test the configuration (Optional)
+3. `python main.py` to train the model and see the evaluation results
 
 ### Pre-trained models
 You can find them in [a separate repository](https://github.com/Elijas/movie-review-sentiment-polarity-classifier-model). 
