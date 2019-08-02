@@ -12,11 +12,16 @@ Both algorithms have achieved very similar cross-validation scores, so we can co
 If the frequency of label samples in the dataset were imbalaced, then I would have to use a performance metric that is capable of handling such situation. A basic accepted approach is to take [Precision and Recall](https://en.wikipedia.org/wiki/Precision_and_recall) metrics (two ratios of True Positive predictions for each label). If it were to be appropriate to give equal importance to the two, then they would be combined into a one score by using a harmonic mean (i.e. the [F1-score](https://en.wikipedia.org/wiki/F1_score)). This would constitute a proper handling of an imbalanced dataset.
 
 # Project Structure and Instructions
-Runnables are available in these folders:
-- `notebook` - Detailed exploration steps and performance evaluation.
-- `src/modeling` - Run the public scripts in this folder to train the models.
 
-Install the required dependencies by running `pip install -r requirements.txt` in the shell.
+### Training instructions
+Run the following commands in shell:
+1. `pip install -r requirements.txt` to install the dependencies.
+2. `mkdir model`
+3. (Optional) `python main.py --dry-run` to test the configuration
+4. `python main.py` to train the model and see the evaluation results
+
+### Pre-trained models
+You can find them in [a separate repository](https://github.com/Elijas/movie-review-sentiment-polarity-classifier-model). 
 
 # Dataset
 [sentence polarity dataset v1.0](https://www.cs.cornell.edu/people/pabo/movie-review-data/) (includes sentence polarity dataset README v1.0): 5331 positive and 5331 negative processed sentences / snippets. Introduced in Pang/Lee ACL 2005. Released July 2005.
