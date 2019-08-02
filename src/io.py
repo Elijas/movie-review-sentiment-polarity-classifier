@@ -30,11 +30,19 @@ def load(path: Path):
         return joblib.load(file)
 
 
+def write_file(contents: str, path: Path):
+    create_folders_if_needed(path)
+    with path.open('w') as report_file:
+        report_file.write(contents)
+
+
+def read_file(path: Path):
+    with path.open('r', errors='replace') as file:
+        return file.readlines()
+
+
 def get_corpus():
-    with const.PATHS.CORPUS_NEG.open() as file:
-        neg = file.readlines()
-    with const.PATHS.CORPUS_POS.open() as file:
-        pos = file.readlines()
+    neg, pos = read_file(const.PATHS.CORPUS_NEG), read_file(const.PATHS.CORPUS_POS)
     return Corpus(neg=neg, pos=pos, neg_and_pos=neg + pos)
 
 
@@ -69,10 +77,7 @@ def get_label_title(label):
     return const.LABELS.TITLES[label]
 
 
-def write_file(contents: str, path: Path):
-    create_folders_if_needed(path)
-    with path.open('w') as report_file:
-        report_file.write(contents)
+
 
 
 def save_model(classifier_name: str, classifier, report: str) -> None:
