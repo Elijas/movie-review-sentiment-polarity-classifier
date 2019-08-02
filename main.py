@@ -19,5 +19,5 @@ def show_and_save_results(classifier_name: str, classifier) -> None:
 if __name__ == '__main__':
     data = get_split_dataset()
 
-    naive_bayes_classifier = train(const.TRAINING_GS_OPTS.NAIVE_BAYES, data)
-    show_and_save_results('naive-bayes', naive_bayes_classifier)
+    naive_bayes_classifier = train(gs_options=const.TRAINING_GS_OPTS.NAIVE_BAYES, dataset=data)
+    show_and_save_results(classifier_name='naive-bayes', classifier=naive_bayes_classifier)
