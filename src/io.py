@@ -15,6 +15,10 @@ XY = namedtuple('XY', 'x y')
 Dataset = namedtuple('Dataset', 'trn tst')
 
 
+def create_folders_if_needed(path: Path):
+    os.makedirs(os.path.dirname(str(path)), exist_ok=True)
+
+
 def dump(obj, path: Path):
     create_folders_if_needed(path)
     with path.open('wb') as file:
@@ -63,10 +67,6 @@ def get_raw_structured_dataset() -> Dataset:
 
 def get_label_title(label):
     return const.LABELS.TITLES[label]
-
-
-def create_folders_if_needed(path: Path):
-    os.makedirs(os.path.dirname(str(path)), exist_ok=True)
 
 
 def write_file(contents: str, path: Path):

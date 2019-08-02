@@ -4,7 +4,7 @@ Constants and settings
 import os
 from pathlib import Path
 
-RANDOMNESS_SEED = 834
+RANDOMNESS_SEED = 2
 DATASET_TEST_SPLIT_RATIO = 0.20
 
 
