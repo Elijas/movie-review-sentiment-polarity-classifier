@@ -1,12 +1,27 @@
+"""
+Functions related to saving/loading data and models
+"""
 from collections import namedtuple
+from pathlib import Path
 
+import joblib
 from sklearn.model_selection import train_test_split
 
-from src import const, objdump
+from src import const
 
 Corpus = namedtuple('Corpus', ['pos', 'neg', 'neg_and_pos'])
 XY = namedtuple('XY', 'x y')
 Dataset = namedtuple('Dataset', 'trn tst')
+
+
+def dump(obj, path: Path):
+    with path.open('wb') as file:
+        joblib.dump(obj, file)
+
+
+def load(path: Path):
+    with path.open('rb') as file:
+        return joblib.load(file)
 
 
 def get_corpus():
@@ -17,13 +32,16 @@ def get_corpus():
     return Corpus(neg=neg, pos=pos, neg_and_pos=neg + pos)
 
 
-def get_split_dataset():
+def get_split_dataset() -> Dataset:
+    """
+    :return: Dataset that was shuffled, coupled with labels, split to test/train, but without preprocessing
+    """
     if (const.PATHS.SPLIT_DATASET_TRN.exists()
             and const.PATHS.SPLIT_DATASET_TST.exists()):
         # Saving the split dataset to ensure an appropriate test dataset
         #  for the trained model that has been saved
-        return Dataset(trn=objdump.load(const.PATHS.SPLIT_DATASET_TRN),
-                       tst=objdump.load(const.PATHS.SPLIT_DATASET_TST))
+        return Dataset(trn=load(const.PATHS.SPLIT_DATASET_TRN),
+                       tst=load(const.PATHS.SPLIT_DATASET_TST))
 
     def corpus_to_dataset(*args, **kwargs):
         trn_x, tst_x, trn_y, tst_y = train_test_split(*args, **kwargs)
@@ -36,10 +54,21 @@ def get_split_dataset():
                                 test_size=const.DATASET_TEST_SPLIT_RATIO,
                                 random_state=const.RANDOMNESS_SEED)
 
-    objdump.dump(dataset.tst, const.PATHS.SPLIT_DATASET_TST)
-    objdump.dump(dataset.trn, const.PATHS.SPLIT_DATASET_TRN)
+    dump(dataset.tst, const.PATHS.SPLIT_DATASET_TST)
+    dump(dataset.trn, const.PATHS.SPLIT_DATASET_TRN)
     return dataset
 
 
 def get_label_title(label):
     return const.LABELS.TITLES[label]
+
+
+def save_model(classifier_name: str, classifier, report: str) -> None:
+    model_filepath = const.PATHS.MODEL_FOLDER / f'{classifier_name}.joblib'
+    report_filepath = const.PATHS.MODEL_FOLDER / f'{classifier_name}.report.txt'
+
+    dump(classifier, model_filepath)
+    with report_filepath.open('w') as report_file:
+        report_file.write(report)
+
+    print(f'Successfully saved model and report of classifier "{classifier_name}".')
