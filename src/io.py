@@ -1,6 +1,7 @@
 """
 Functions related to saving/loading data and models
 """
+import os
 from collections import namedtuple
 from pathlib import Path
 
@@ -15,6 +16,7 @@ Dataset = namedtuple('Dataset', 'trn tst')
 
 
 def dump(obj, path: Path):
+    create_folders_if_needed(path)
     with path.open('wb') as file:
         joblib.dump(obj, file)
 
@@ -63,12 +65,21 @@ def get_label_title(label):
     return const.LABELS.TITLES[label]
 
 
+def create_folders_if_needed(path: Path):
+    os.makedirs(os.path.dirname(str(path)), exist_ok=True)
+
+
+def write_file(contents: str, path: Path):
+    create_folders_if_needed(path)
+    with path.open('w') as report_file:
+        report_file.write(contents)
+
+
 def save_model(classifier_name: str, classifier, report: str) -> None:
     model_filepath = const.PATHS.MODEL_FOLDER / f'{classifier_name}.joblib'
     report_filepath = const.PATHS.MODEL_FOLDER / f'{classifier_name}.report.txt'
 
     dump(classifier, model_filepath)
-    with report_filepath.open('w') as report_file:
-        report_file.write(report)
+    write_file(report, report_filepath)
 
     print(f'Successfully saved model and report of classifier "{classifier_name}".')
