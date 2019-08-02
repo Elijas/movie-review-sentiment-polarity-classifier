@@ -1,4 +1,4 @@
-For my own future reference, project completeness and credits sake, here are several links I've had in my bookmarks for code design inspiration and practical documentation.
+For my own future reference, project completeness and credits sake, here are several links I've had in my bookmarks for (future) code design inspiration, practical documentation purposes.
 
 # Project Structure
 - https://towardsdatascience.com/manage-your-data-science-project-structure-in-early-stage-95f91d4d0600
