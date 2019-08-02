@@ -4,6 +4,9 @@ Functions related to preprocessing datasets
 from typing import List
 
 import nltk
+from sklearn.feature_extraction.text import CountVectorizer
+
+from src.io import XY, Dataset
 
 nltk.download('stopwords', quiet=True, raise_on_error=True)
 NLTK_STOP_WORDS = list(set(nltk.corpus.stopwords.words('english')))
@@ -11,6 +14,8 @@ NLTK_STOP_WORDS = list(set(nltk.corpus.stopwords.words('english')))
 nltk.download('punkt', quiet=True, raise_on_error=True)
 nltk_porter_stemmer = nltk.stem.PorterStemmer()
 TOKENIZED_STOP_WORDS = nltk.word_tokenize(' '.join(nltk.corpus.stopwords.words('english')))
+
+analyzer = CountVectorizer().build_analyzer()
 
 
 def normalize_word(word):
@@ -34,3 +39,29 @@ def process_string_to_tokens(string: str, remove_stop_words=True, normalize_word
 def process_strings_to_token_lists(strings: List[str]) -> List[List[str]]:
     token_lists = (process_string_to_tokens(line) for line in strings)
     return [tokens for tokens in token_lists if tokens]  # Remove empty lists
+
+
+def only_first_few_samples(dataset, trn_count=30, tst_count=10):
+    return Dataset(trn=XY(x=dataset.trn.x[:trn_count],
+                          y=dataset.trn.y[:trn_count]),
+                   tst=XY(x=dataset.tst.x[:tst_count],
+                          y=dataset.tst.y[:tst_count]))
+
+
+def alpha__analyzer_fun(tokens):
+    iterable = analyzer(tokens)
+    iterable = (nltk_porter_stemmer.stem(token) for token in iterable)
+    return iterable
+
+def alpha_stem__analyzer_fun(tokens):
+    iterable = analyzer(tokens)
+    iterable = (token for token in iterable if token.isalpha())
+    iterable = (nltk_porter_stemmer.stem(token) for token in iterable)
+    return iterable
+
+def alpha_stem_stop__analyzer_fun(tokens):
+    iterable = analyzer(tokens)
+    iterable = (token for token in iterable if token.isalpha())
+    iterable = (nltk_porter_stemmer.stem(token) for token in iterable)
+    iterable = (token for token in iterable if token not in NLTK_STOP_WORDS)
+    return iterable

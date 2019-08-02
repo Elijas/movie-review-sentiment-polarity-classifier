@@ -27,11 +27,12 @@ True Negatives: {confusion_matrix[1][1]}
 False Positives: {confusion_matrix[1][0]}
 False Negatives: {confusion_matrix[0][1]}
 
-=== Training ===
+=== Training result ===
 Best score: {classifier.best_score_}
-Best parameters: {classifier.best_params_}  
+Best parameters: {classifier.best_params_} 
+Best estimator: {repr(classifier.best_estimator_)} 
 
-=== Classifier ===
+=== Repr of Classifier ===
 {repr(classifier)}
 
 === Meta ===
