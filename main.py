@@ -2,7 +2,7 @@ from sklearn.model_selection import GridSearchCV
 
 from src import const
 from src.evaluation import get_classification_report
-from src.io import get_split_dataset, save_model, Dataset
+from src.io import get_raw_structured_dataset, save_model, Dataset
 
 
 def train(gs_options: dict, dataset: Dataset):
@@ -17,7 +17,7 @@ def show_and_save_results(classifier_name: str, classifier) -> None:
 
 
 if __name__ == '__main__':
-    data = get_split_dataset()
+    data = get_raw_structured_dataset()
 
     naive_bayes_classifier = train(gs_options=const.TRAINING_GS_OPTS.NAIVE_BAYES, dataset=data)
     show_and_save_results(classifier_name='naive-bayes', classifier=naive_bayes_classifier)

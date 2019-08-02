@@ -21,9 +21,9 @@ class PATHS:
     CORPUS_POS = RAW_DATASET_FOLDER / 'rt-polarity.pos'
     CORPUS_NEG = RAW_DATASET_FOLDER / 'rt-polarity.neg'
 
-    SPLIT_DATASET_FOLDER = DATA_FOLDER / 'raw_structured'
-    SPLIT_DATASET_TRN = SPLIT_DATASET_FOLDER / 'dataset-train.joblib'
-    SPLIT_DATASET_TST = SPLIT_DATASET_FOLDER / 'dataset-test.joblib'
+    RAW_STRUCTURED_DATASET_FOLDER = DATA_FOLDER / 'raw_structured'
+    RAW_STRUCTURED_DATASET_TRN = RAW_STRUCTURED_DATASET_FOLDER / 'dataset-train.joblib'
+    RAW_STRUCTURED_DATASET_TST = RAW_STRUCTURED_DATASET_FOLDER / 'dataset-test.joblib'
 
 
 class JUPYTER:

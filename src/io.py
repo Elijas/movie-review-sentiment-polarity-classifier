@@ -32,16 +32,16 @@ def get_corpus():
     return Corpus(neg=neg, pos=pos, neg_and_pos=neg + pos)
 
 
-def get_split_dataset() -> Dataset:
+def get_raw_structured_dataset() -> Dataset:
     """
     :return: Dataset that was shuffled, coupled with labels, split to test/train, but without preprocessing
     """
-    if (const.PATHS.SPLIT_DATASET_TRN.exists()
-            and const.PATHS.SPLIT_DATASET_TST.exists()):
+    if (const.PATHS.RAW_STRUCTURED_DATASET_TRN.exists()
+            and const.PATHS.RAW_STRUCTURED_DATASET_TST.exists()):
         # Saving the split dataset to ensure an appropriate test dataset
         #  for the trained model that has been saved
-        return Dataset(trn=load(const.PATHS.SPLIT_DATASET_TRN),
-                       tst=load(const.PATHS.SPLIT_DATASET_TST))
+        return Dataset(trn=load(const.PATHS.RAW_STRUCTURED_DATASET_TRN),
+                       tst=load(const.PATHS.RAW_STRUCTURED_DATASET_TST))
 
     def corpus_to_dataset(*args, **kwargs):
         trn_x, tst_x, trn_y, tst_y = train_test_split(*args, **kwargs)
@@ -54,8 +54,8 @@ def get_split_dataset() -> Dataset:
                                 test_size=const.DATASET_TEST_SPLIT_RATIO,
                                 random_state=const.RANDOMNESS_SEED)
 
-    dump(dataset.tst, const.PATHS.SPLIT_DATASET_TST)
-    dump(dataset.trn, const.PATHS.SPLIT_DATASET_TRN)
+    dump(dataset.tst, const.PATHS.RAW_STRUCTURED_DATASET_TST)
+    dump(dataset.trn, const.PATHS.RAW_STRUCTURED_DATASET_TRN)
     return dataset
 
 
