@@ -1,3 +1,4 @@
+
 # Description
 Movie reviews are classified into positive and negative by training two different classifiers (Naive Bayes and Logistic Regression). Solution is provided in Python programming language and the best classifier has achieved 79% test accuracy.
 
@@ -16,7 +17,7 @@ If the frequency of label samples in the dataset were imbalaced, then I would ha
 ### Training instructions
 Run the following commands in shell:
 1. `pip install -r requirements.txt` to install the dependencies.
-2. `python main.py --dry-run` to test the configuration (Optional)
+2. `python main.py --dry-run` to test the configuration (Optional. Note: it will overwrite the model to test file I/O).
 3. `python main.py` to train the model and see the evaluation results
 
 ### Pre-trained models
