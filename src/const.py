@@ -4,13 +4,13 @@ Constants and settings
 import os
 from pathlib import Path
 
-RANDOMNESS_SEED = 2
-DATASET_TEST_SPLIT_RATIO = 0.20
+RANDOMNESS_SEED = 42
+DATASET_TEST_SPLIT_RATIO = 0.10
 
 
 class PATHS:
     ROOT_FOLDER = Path(os.path.dirname(os.path.realpath(__file__))).parent
-    MODEL_FOLDER = ROOT_FOLDER / 'model'
+    MODEL_FOLDER = ROOT_FOLDER / 'models'
     DATA_FOLDER = ROOT_FOLDER / 'data'
     CACHE_FOLDER = ROOT_FOLDER / 'cache'
 

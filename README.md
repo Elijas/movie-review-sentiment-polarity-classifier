@@ -1,6 +1,6 @@
 
 # Description
-Movie reviews are classified into positive and negative by training two different classifiers ([Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) and [Logistic Regression](https://en.wikipedia.org/wiki/Logistic_regression)). Solution is provided in Python programming language and the best classifier has achieved [79% test accuracy](https://github.com/Elijas/movie-review-sentiment-polarity-classifier-model).
+Movie reviews are classified into positive and negative by training two different classifiers ([Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) and [Logistic Regression](https://en.wikipedia.org/wiki/Logistic_regression)). Solution is provided in Python programming language and the best classifier has achieved [81% test accuracy](https://github.com/Elijas/movie-review-sentiment-polarity-classifier-model), which compares well with the other classifiers trained on the same dataset (links are available at the end of this README).
 
 # Q&A
 #### 1. Describe text processing pipeline you have selected.
@@ -10,18 +10,21 @@ In the standard workflow of implementing ML, it is accepted to abide by the [KIS
 #### 3. Compare selected classification methods. Which one is better? Why?
 Both algorithms have achieved [very similar cross-validation scores](https://github.com/Elijas/movie-review-sentiment-polarity-classifier-model), so we can consider them equivalent by performance, although Naive Bayes was faster to train.
 #### 4. How would you compare selected classification methods if the dataset was imbalanced?
-If the frequency of label samples in the dataset were imbalaced, then I would have to use a performance metric that is capable of handling such situation. A basic accepted approach is to take [Precision and Recall](https://en.wikipedia.org/wiki/Precision_and_recall) metrics (two ratios of True Positive predictions for each label). If it were to be appropriate to give equal importance to the two, then they would be combined into a one score by using a harmonic mean (i.e. the [F1-score](https://en.wikipedia.org/wiki/F1_score)). This would constitute a proper handling of an imbalanced dataset.
+If the frequencies of label samples in the dataset were imbalaced, then I would have to use a performance metric that is capable of handling such situation. A basic accepted approach is to take [Precision and Recall](https://en.wikipedia.org/wiki/Precision_and_recall) metrics (two ratios of True Positive predictions for each label). If it were to be appropriate to give equal importance to the two, then they would be combined into a one score by using a harmonic mean (i.e. the [F1-score](https://en.wikipedia.org/wiki/F1_score)). This would constitute a proper handling of an imbalanced dataset.
 
 # Project Structure and Instructions
 
 ### Training instructions
 Run the following commands in shell:
 1. `pip install -r requirements.txt` to install the dependencies.
-2. `python main.py --dry-run` to test the configuration (Optional. Note: it will overwrite the model to test file I/O).
-3. `python main.py` to train the model and see the evaluation results
+1. `python main.py --dry-run` to test the configuration (Optional) (Note: it will overwrite the previously trained saved model to test file I/O).
+1. `python main.py` to train the model and see the evaluation results
 
 ### Pre-trained models
 You can find them in [a separate repository](https://github.com/Elijas/movie-review-sentiment-polarity-classifier-model). 
+
+### Caveats
+1. If you change constants related to dataset shuffle/split (such as `RANDOMNESS_SEED`, `DATASET_TEST_SPLIT_RATIO`) then `data/raw_structured` folder has to be deleted (it will be recreated automatically) for the new constants to apply.
 
 # Dataset
 [sentence polarity dataset v1.0](https://www.cs.cornell.edu/people/pabo/movie-review-data/) (includes sentence polarity dataset README v1.0): 5331 positive and 5331 negative processed sentences / snippets. Introduced in Pang/Lee ACL 2005. Released July 2005.
