@@ -1,6 +1,6 @@
 
 # Description
-Movie reviews are classified into positive and negative by training two different classifiers (Naive Bayes and Logistic Regression). Solution is provided in Python programming language and the best classifier has achieved 79% test accuracy ([source](https://github.com/Elijas/movie-review-sentiment-polarity-classifier-model)).
+Movie reviews are classified into positive and negative by training two different classifiers ([Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) and [Logistic Regression](https://en.wikipedia.org/wiki/Logistic_regression)). Solution is provided in Python programming language and the best classifier has achieved 79% test accuracy ([source](https://github.com/Elijas/movie-review-sentiment-polarity-classifier-model)).
 
 # Q&A
 #### 1. Describe text processing pipeline you have selected.
