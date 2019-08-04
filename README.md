@@ -14,17 +14,18 @@ If the frequencies of label samples in the dataset were imbalaced, then I would 
 
 # Project Structure and Instructions
 
+### Pre-trained models
+You can find them in [a separate repository](https://github.com/Elijas/movie-review-sentiment-polarity-classifier-model). 
+
 ### Training instructions
+
 Run the following commands in shell:
 1. `pip install -r requirements.txt` to install the dependencies.
 1. `python main.py --dry-run` to test the configuration (Optional) (Note: it will overwrite the previously trained saved model to test file I/O).
 1. `python main.py` to train the model and see the evaluation results
 
-### Pre-trained models
-You can find them in [a separate repository](https://github.com/Elijas/movie-review-sentiment-polarity-classifier-model). 
-
-### Caveats
-1. If you change constants related to dataset shuffle/split (such as `RANDOMNESS_SEED`, `DATASET_TEST_SPLIT_RATIO`) then `data/raw_structured` folder has to be deleted (it will be recreated automatically, once deleted) for the new constants to apply.
+##### Caveats
+- If constants related to dataset shuffle/split (such as `RANDOMNESS_SEED`, `DATASET_TEST_SPLIT_RATIO`) are changed, then `data/raw_structured` folder has to be *deleted* for the new constants to be applied. The folder will be regenerated automatically.
 
 # Dataset
 [sentence polarity dataset v1.0](https://www.cs.cornell.edu/people/pabo/movie-review-data/) (includes sentence polarity dataset README v1.0): 5331 positive and 5331 negative processed sentences / snippets. Introduced in Pang/Lee ACL 2005. Released July 2005.
