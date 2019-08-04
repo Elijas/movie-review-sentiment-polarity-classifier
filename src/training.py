@@ -21,10 +21,11 @@ def _get_shared_gs_opts(dry_run: bool):
     }
 
 
-_SHARED_PIPELINE_ELEMENTS = [
-    ('vect', CountVectorizer(lowercase=True, strip_accents='ascii',)),
-    ('tfidf', TfidfTransformer()),
-]
+def _get_shared_pipeline_elements():
+    return [
+        ('vect', CountVectorizer(lowercase=True, strip_accents='ascii', )),
+        ('tfidf', TfidfTransformer()),
+    ]
 
 
 def _get_shared_param_grid_opts(dry_run: bool):
@@ -40,7 +41,7 @@ def _get_shared_param_grid_opts(dry_run: bool):
 
 def naive_bayes_gs_opts(dry_run: bool = False):
     return {
-        'estimator': Pipeline(_SHARED_PIPELINE_ELEMENTS + [
+        'estimator': Pipeline(_get_shared_pipeline_elements() + [
             ('nb', MultinomialNB())
         ]),
         'param_grid': {
@@ -53,7 +54,7 @@ def naive_bayes_gs_opts(dry_run: bool = False):
 
 def logistic_regression_gs_opts(dry_run: bool = False):
     return {
-        'estimator': Pipeline(_SHARED_PIPELINE_ELEMENTS + [
+        'estimator': Pipeline(_get_shared_pipeline_elements() + [
             ('lr', LogisticRegression(
                 solver='liblinear',
                 dual=False
