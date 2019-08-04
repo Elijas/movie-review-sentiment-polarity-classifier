@@ -31,3 +31,8 @@ For my own future reference, project completeness and credits sake, here are sev
 - https://towardsdatascience.com/deep-learning-for-sentiment-analysis-7da8006bf6c1
 - https://towardsdatascience.com/sentiment-analysis-using-lstm-step-by-step-50d074f09948
 
+---
+
+- https://www.analyticsvidhya.com/blog/2018/11/tutorial-text-classification-ulmfit-fastai-library/?utm_source=blog&utm_medium=top-pretrained-models-nlp-article
+- https://towardsdatascience.com/machine-learning-text-classification-language-modelling-using-fast-ai-b1b334f2872d
+
