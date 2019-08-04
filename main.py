@@ -8,7 +8,7 @@ from src.processing import only_first_few_samples
 from src.training import naive_bayes_gs_opts, logistic_regression_gs_opts
 
 
-def get_data(dry_run: bool = False):
+def get_data(dry_run: bool = False) -> Dataset:
     data = get_raw_structured_dataset()
     return data if not dry_run else only_first_few_samples(data)
 
