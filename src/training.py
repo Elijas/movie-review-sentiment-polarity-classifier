@@ -6,37 +6,33 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 
-from src.processing import alpha__analyzer_fun, alpha_stem__analyzer_fun, \
-    alpha_stem_stop__analyzer_fun
+from src.processing import processing_analyzer
 
 _ALL_CORES = -1
 
 
 def _get_shared_gs_opts(dry_run: bool):
     return {
-        'cv': 10,
-        'scoring': 'f1' if not dry_run else 'accuracy',
+        'cv': 4,
+        'scoring': 'accuracy',
         'verbose': 1,
         'n_jobs': _ALL_CORES,
+        'error_score': 'raise'
     }
 
 
 _SHARED_PIPELINE_ELEMENTS = [
-    ('vect', CountVectorizer(lowercase=True, strip_accents='ascii')),
+    ('vect', CountVectorizer(lowercase=True, strip_accents='ascii',)),
     ('tfidf', TfidfTransformer()),
 ]
 
 
 def _get_shared_param_grid_opts(dry_run: bool):
     return {
-        'vect__min_df': [None, 2, 5] if not dry_run else [1, 2],
-        'vect__analyzer': [
-            'word',
-            alpha__analyzer_fun,
-            alpha_stem__analyzer_fun,
-            alpha_stem_stop__analyzer_fun
-        ],
-        'vect__ngram_range': [(1, 1), (1, 2), (2, 2), (1, 3)],
+        'vect__min_df': [1, 2, 3] if not dry_run else [1],
+        'vect__analyzer': ['word', processing_analyzer],
+        'vect__stop_words': ['english', None],
+        'vect__ngram_range': [(1, 2), (1, 3)],
         'tfidf__use_idf': [True, False],
         'tfidf__norm': ['l1', 'l2'],
     }
@@ -48,7 +44,7 @@ def naive_bayes_gs_opts(dry_run: bool = False):
             ('nb', MultinomialNB())
         ]),
         'param_grid': {
-            'nb__alpha': [1e-2, 3e-2, 1e-1, 3e-1, 1],
+            'nb__alpha': [1e-1, 3e-1, 1],
             **_get_shared_param_grid_opts(dry_run)
         },
         **_get_shared_gs_opts(dry_run)
