@@ -28,4 +28,4 @@ You can find them in [a separate repository](https://github.com/Elijas/movie-rev
 
 ### Other classifiers trained on this dataset
 - [cmasch/cnn-text-classification](https://github.com/cmasch/cnn-text-classification)
-- [elijas/review_thingie](https://github.com/elijas/review_thingie) (fork from [ashirviskas/reviewthingie](https://github.com/ashirviskas/review_thingie), but with bugfix for dataset split)
+- [elijas/review_thingie](https://github.com/elijas/review_thingie) (fork from [ashirviskas/reviewthingie](https://github.com/ashirviskas/review_thingie), but with bugfix for the dataset test/train splitting)
