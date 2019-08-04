@@ -24,7 +24,7 @@ Run the following commands in shell:
 You can find them in [a separate repository](https://github.com/Elijas/movie-review-sentiment-polarity-classifier-model). 
 
 ### Caveats
-1. If you change constants related to dataset shuffle/split (such as `RANDOMNESS_SEED`, `DATASET_TEST_SPLIT_RATIO`) then `data/raw_structured` folder has to be deleted (it will be recreated automatically) for the new constants to apply.
+1. If you change constants related to dataset shuffle/split (such as `RANDOMNESS_SEED`, `DATASET_TEST_SPLIT_RATIO`) then `data/raw_structured` folder has to be deleted (it will be recreated automatically, once deleted) for the new constants to apply.
 
 # Dataset
 [sentence polarity dataset v1.0](https://www.cs.cornell.edu/people/pabo/movie-review-data/) (includes sentence polarity dataset README v1.0): 5331 positive and 5331 negative processed sentences / snippets. Introduced in Pang/Lee ACL 2005. Released July 2005.
