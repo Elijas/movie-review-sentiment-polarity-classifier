@@ -1,6 +1,6 @@
 
 # Description
-Movie reviews are classified into positive and negative by training two different classifiers ([Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) and [Logistic Regression](https://en.wikipedia.org/wiki/Logistic_regression)). Solution is provided in Python programming language and the best classifier has achieved [81% test accuracy](https://github.com/Elijas/movie-review-sentiment-polarity-classifier-model), which compares reaches the accuracy of other state-of-the-art classifiers trained on the same dataset (links are available at the end of this README).
+Movie reviews are classified into positive and negative by training two different classifiers ([Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) and [Logistic Regression](https://en.wikipedia.org/wiki/Logistic_regression)). Solution is provided in Python programming language and the best classifier has achieved [81% test accuracy](https://github.com/Elijas/movie-review-sentiment-polarity-classifier-model), which compares reaches the accuracy of other state-of-the-art classifiers trained on the same dataset at the time (links are available at the end of this README).
 
 # Q&A
 #### 1. Describe text processing pipeline you have selected.
@@ -33,3 +33,4 @@ Run the following commands in shell:
 ### Other classifiers trained on this dataset
 - [cmasch/cnn-text-classification](https://github.com/cmasch/cnn-text-classification)
 - [elijas/review_thingie](https://github.com/elijas/review_thingie) (fork from [ashirviskas/reviewthingie](https://github.com/ashirviskas/review_thingie), but with bugfix for the dataset test/train splitting)
+- [err8029/homework](https://github.com/err8029/homework)
