@@ -1,0 +1,3 @@
+- **[View notebook 1](https://nbviewer.jupyter.org/github/Elijas/movie-review-sentiment-polarity-classifier/blob/master/notebooks/01__exploratory-data-analysis.ipynb)**
+- **[View notebook 2](https://nbviewer.jupyter.org/github/Elijas/movie-review-sentiment-polarity-classifier/blob/master/notebooks/02__naive-bayes_proof-of-concept.ipynb)**
+- **[View notebook 3](https://nbviewer.jupyter.org/github/Elijas/movie-review-sentiment-polarity-classifier/blob/master/notebooks/03__logistic-regression_proof-of-concept.ipynb)**
